@@ -12,7 +12,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Function to generate README using LLM
 def generate_readme(project_name, requirements, code_snippet):
-    llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro-002", temperature=1, api_key=GOOGLE_API_KEY)
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-8b", temperature=1, api_key=GOOGLE_API_KEY)
     PROMPT_TEMPLATE = PROMPT
     prompt = PromptTemplate(
         input_variables=["project_name", "requirements", "code_snippet"],
@@ -47,6 +47,7 @@ if st.button("Generate README"):
         try:
             # Generate README
             readme_content = generate_readme(project_name, requirements, code_snippet)
+            st.write(readme_content)
             
             # Display the README and provide download options
             st.subheader("Generated README:")
